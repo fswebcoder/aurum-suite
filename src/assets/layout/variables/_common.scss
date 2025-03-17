@@ -1,0 +1,30 @@
+
+:root {
+    --primary-color: var(--p-primary-color);
+    --primary-color-text: var(--p-primary-contrast-color);
+    --text-color: var(--p-text-color);
+    --text-color-secondary: var(--p-text-muted-color);
+    --surface-border: var(--p-content-border-color);
+    --surface-card: var(--p-content-background);
+    --surface-hover: var(--p-content-hover-background);
+    --surface-overlay: var(--p-overlay-popover-background);
+    --transition-duration: var(--p-transition-duration);
+    --maskbg: var(--p-mask-background);
+    --border-radius: var(--p-content-border-radius);
+    --layout-section-transition-duration: 0.2s;
+    --focus-ring-shadow: var(--p-focus-ring-shadow);
+    --p-form-field-border-radius: 10px !important;
+    --p-floatlabel-active-color: var(--primary-color, white) !important;
+    --p-floatlabel-active-font-size: 1rem !important;
+    --p-floatlabel-on-active-background: red !important;
+    --p-floatlabel-label-active-font-weight: bold !important;
+    --p-floatlabel-on-border-radius: 20px !important;
+    --p-button-success-background:var(--primary-color) !important;
+    --p-button-success-border-color: var(--primary-color) !important;
+  --p-button-success-hover-background: color-mix(in srgb, var(--primary-color) 90%, white 8%) !important;
+  --p-button-success-hover-border-color: color-mix(in srgb, var(--primary-color) 10%, white 8%) !important;
+    --p-card-border-radius: 20px !important;
+    --p-card-shadow:rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+
+}

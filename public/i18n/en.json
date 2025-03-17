@@ -1,0 +1,33 @@
+{
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "refresh": "Refresh",
+    "loading": "Loading",
+    "loading_data": "Loading data",
+    "loading_failed": "Loading failed",
+    "loading_success": "Loading success",
+    "loading_more": "Loading more",
+    "loading_more_failed": "Loading more failed",
+    "loading_more_success": "Loading more success",
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "Logout",
+    "home": "Home",
+    "settings": "Settings",
+    "profile": "Profile",
+    "language": "Language",
+    "save": "Save",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "error": {
+        "network": "Network error",
+        "server": "Server error",
+        "not_found": "Not found",
+        "unauthorized": "Unauthorized"
+    }
+}

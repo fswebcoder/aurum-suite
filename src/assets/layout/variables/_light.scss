@@ -1,0 +1,29 @@
+:root {
+    --surface-ground: var(--p-surface-100);
+}
+
+.p-floatlabel:has(input:focus) label, .p-floatlabel:has(input:-webkit-autofill) label, .p-floatlabel:has(textarea:focus) label, .p-floatlabel:has(.p-inputwrapper-focus) label {
+    color: var(--p-floatlabel-focus-color) !important;
+    background-color: white !important;
+    border-radius: 5px !important;
+    margin-top: 10px !important;
+    padding: 0 0.5rem !important;
+}
+
+
+.p-floatlabel:has(input.p-filled) label, .p-floatlabel:has(textarea.p-filled) label, .p-floatlabel:has(.p-inputwrapper-filled) label {
+    color: var(--p-floatlabel-active-color);
+    background-color: white !important;
+    border-radius: 5px !important;
+    margin-top: 10px !important;
+    padding: 0 0.5rem !important;
+}
+
+.p-card{
+    border-radius: 20px !important;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
+}
+
+.p-select-label {
+    text-align: left !important;
+}

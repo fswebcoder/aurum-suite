@@ -1,0 +1,43 @@
+<video autoplay loop muted class="absolute top-0 left-0 w-full h-full object-cover">
+    <source [src]="urlVideo" type="video/mp4" />
+    Tu navegador no soporta videos.
+</video>
+<div class="min-h-screen flex flex-col bg-cover relative">
+    <div class="self-center mt-auto mb-auto bg-cover blur-xs">
+        <div class="text-center z-50 flex flex-col border rounded-xl border-surface bg-white/10 dark:bg-surface-400/10 p-8 backdrop-blur-md shadow-lg">
+            <span class="text-2xl font-semibold text-center p-12">
+                <img src="Sun-Valley-blanco-Horizontal.png" width="300" alt="" srcset="" />
+            </span>
+
+            <div class="w-full flex flex-col gap-4 px-4">
+                <app-float-inpu type="text" label="Correo electrónico"></app-float-inpu>
+                <app-float-inpu type="password" label="Contraseña"></app-float-inpu>
+
+                <app-select label="Seleccionar una empresa" [options]="cities" optionLabel="name"></app-select>
+                <app-button translate="BUTTONS.ACCEPT" [label]="buttonLabel" [disabled]="false" (onClick)="showDialog()">
+                    <ng-template>
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </ng-template>
+                </app-button>
+                <p-divider align="center" type="solid">
+                    <b>Conectar con Microsoft </b>
+                </p-divider>
+                <app-button label="Iniciar sesión con Microsoft" severity="secondary" [disabled]="true">
+                    <ng-template>
+                        <i class="fa-brands fa-microsoft"></i>
+                    </ng-template>
+                </app-button>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog closable="rounded-md" header="Seleccionar compañia" [draggable]="false" [closable]="false" [modal]="true" [(visible)]="visible" [style]="{ width: '60rem' }">
+    <div class="flex justify-center col-3 gap-4">
+        <div class="p-card">
+            <img alt="Card" width="200" src="https://azstoragesunvalley.blob.core.windows.net/company-logos/Quintana.png" />
+        </div>
+        <div class="p-card">
+            <img alt="Card" width="200" src="https://azstoragesunvalley.blob.core.windows.net/company-logos/Quintana.png" />
+        </div>
+    </div>
+</p-dialog>

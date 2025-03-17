@@ -1,0 +1,8 @@
+<button pButton pRipple class="w-full mt-4 px-4" [label]="label" [severity]="severity" [disabled]="disabled" (click)="onClick.emit()">
+    @if (iconTemplate) {
+        <ng-container *ngTemplateOutlet="iconTemplate"></ng-container>
+    } @else {
+        <i class="fa-solid fa-circle-question"></i>
+        <!-- Icono por defecto -->
+    }
+</button>
