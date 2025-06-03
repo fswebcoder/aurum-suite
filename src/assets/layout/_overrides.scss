@@ -1,0 +1,53 @@
+p-radio-button,
+p-radiobutton,
+p-radioButton {
+    display: inline-flex;
+}
+
+p-tree {
+    .p-tree-node-checkbox {
+        display: block;
+    }
+}
+
+p-treetable {
+    .p-treetable-node-checkbox {
+        display: block;
+    }
+}
+
+.p-tag-icon {
+    line-height: 1.2;
+}
+
+.p-checkbox {
+    display: block !important;
+}
+
+.p-floatlabel {
+    display: flex !important;
+    input {
+        width: 100% !important;
+        border-radius: 10px !important;
+        padding: 0.7rem 0.7rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+.p-floatlabel-on:has(input:focus) label,
+.p-floatlabel-on:has(input.p-filled) label,
+.p-floatlabel-on:has(input:-webkit-autofill) label,
+.p-floatlabel-on:has(textarea:focus) label,
+.p-floatlabel-on:has(textarea.p-filled) label,
+.p-floatlabel-on:has(.p-inputwrapper-focus) label,
+.p-floatlabel-on:has(.p-inputwrapper-filled) label {
+    top: 0;
+    transform: translateY(-50%);
+    border-radius: var(--p-floatlabel-on-border-radius);
+    background: var(--p-floatlabel-on-active-background);
+    padding: var(--p-floatlabel-on-active-padding);
+    font-size: 1.1rem !important;
+    padding: 0.2rem 0.5rem !important;
+    border-radius: 5px !important;
+    font-weight: 500;
+}

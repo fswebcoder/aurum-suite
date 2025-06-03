@@ -1,0 +1,15 @@
+{
+  "name": "@svi/utilities",
+  "version": "1000.0.4",
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://pkgs.dev.azure.com/Desarrollo-Sunvalley/AurumSuite/_packaging/dev-libraries/npm/registry/"
+  }
+}
