@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginDumpComponent } from '../login-dump/login-dump.component';
+import { ILoginParamsEntity } from '@/domain/entities/auth/login-params.entity';
 
 @Component({
   selector: 'app-login-smart',
@@ -8,5 +9,6 @@ import { LoginDumpComponent } from '../login-dump/login-dump.component';
   styleUrl: './login-smart.component.scss'
 })
 export class LoginSmartComponent {
-
+  onLogin($event: ILoginParamsEntity) {
+  }
 }

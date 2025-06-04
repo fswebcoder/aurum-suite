@@ -41,7 +41,10 @@ import { PasswordModule } from 'primeng/password';
       multi: true
     }
   ],
-  templateUrl: './float-input.component.html'
+  templateUrl: './float-input.component.html',
+  host: {
+    class: 'w-full p-floatlabel-on'
+  }
 })
 export class FloatInputComponent implements ControlValueAccessor, Validator {
   readonly id = `float-input-${crypto.randomUUID()}`;

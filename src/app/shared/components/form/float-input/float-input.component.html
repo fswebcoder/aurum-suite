@@ -1,7 +1,7 @@
 <p-floatlabel variant="on">
   @if (icon()) {
     <p-icon-field>
-      <p-inputicon [class]="icon()"  pSize="large"/>
+      <p-inputicon [class]="icon()" />
       <ng-container [ngTemplateOutlet]="input"></ng-container>
     </p-icon-field>
   } @else if (type() === 'password') {
@@ -9,9 +9,10 @@
       [formControl]="control"
       [feedback]="false"
       toggleMask
-      inputStyleClass="w-full"
       inputId="password_label"
-      styleClass="w-full flex"
+      styleClass="w-full"
+      [inputStyle]="{'width': '100%'}"
+      class="w-full"
     />
   } @else {
     <ng-container [ngTemplateOutlet]="input"></ng-container>
@@ -42,7 +43,10 @@
     [formControl]="control"
     [id]="id"
     [type]="type()"
-    class="w-full p-inputtext-sm"
-    size="small"
+    [style]="{
+        'width': '100%'
+    }"
+    class="p-inputtext-md"
+    size="medium"
   />
 </ng-template>
