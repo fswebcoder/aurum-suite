@@ -37,6 +37,9 @@
             "@pages/*": [
                 "src/app/pages/*"
             ],
+            "@lims/*": [
+                "src/app/presentation/modules/lims/*"
+            ],
             "@siv/utilities": [
                 "./dist/utilities"
             ]
