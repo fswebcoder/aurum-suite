@@ -23,7 +23,13 @@ export class ButtonComponent implements OnInit, OnDestroy {
   @Input() label?: string;
   @Input() icon?: string; // Para iconos de PrimeNG
   @Input() loading: boolean = false;
-  @Input() disabled: boolean = false;
+  @Input() set disabled(value: boolean) {
+    this._originalDisabled = value;
+    this._disabled = value;
+  }
+  get disabled(): boolean {
+    return this._disabled;
+  }
   @Input() severity?: ButtonSeverity;
   @Input() rounded: boolean = false;
   @Input() raised: boolean = false;
@@ -41,16 +47,14 @@ export class ButtonComponent implements OnInit, OnDestroy {
   @Output() onClick = new EventEmitter<any>();
 
   private _originalDisabled: boolean = false;
+  private _disabled: boolean = false;
 
   ngOnInit() {
     if (this.loadingId) {
-      this._originalDisabled = this.disabled;
-      this.subscription = this.loadingService.isButtonLoading$(this.loadingId).subscribe(
-        isLoading => {
-          this.loading = isLoading;
-          this.disabled = isLoading || this._originalDisabled;
-        }
-      );
+      this.subscription = this.loadingService.isButtonLoading$(this.loadingId).subscribe(isLoading => {
+        this.loading = isLoading;
+        this._disabled = isLoading ? true : this._originalDisabled;
+      });
     }
   }
 

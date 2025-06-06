@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.validation-error-msg {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  
+  i {
+    margin-right: 0.5rem;
+    color: var(--red-500);
+  }
+  
+  .text-danger {
+    color: var(--red-500);
+  }
+}
+
+::ng-deep {
+  .p-select {
+    border-radius: 10px !important;
+    text-align: left !important;
+    &.ng-invalid.ng-dirty {
+      border-color: var(--red-500);
+    }
+  }
+}

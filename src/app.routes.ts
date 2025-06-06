@@ -15,7 +15,16 @@ export const appRoutes: Routes = [
   {
     path: '',
     component: AppLayout,
-    children: [{ path: '', redirectTo: 'home', pathMatch: 'full' }]
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+      {
+        path: 'home',
+        data: { breadcrumb: 'Inicio' },
+        loadComponent: () =>
+          import('@/shared/components/default-page/default-page.component').then(c => c.DefaultPageComponent)
+      }
+    ]
   }
   // { path: 'auth', loadChildren: () => import('@/pages/auth/auth.routes') },
   // {

@@ -1,27 +1,27 @@
 <button
-    pButton
-    pRipple
-    [attr.type]="type"
-    [label]="label || ''"
-    [loading]="loading"
-    [disabled]="disabled"
-    [severity]="severity"
-    [rounded]="rounded"
-    [raised]="raised"
-    [outlined]="outlined"
-    [text]="text"
-    [size]="size"
-    [iconPos]="iconPos || 'left'"
-    [class]="buttonClass"
-    (click)="handleClick($event)"
+  pButton
+  pRipple
+  [attr.type]="type"
+  [label]="label || ''"
+  [loading]="loading"
+  [disabled]="disabled"
+  [severity]="severity"
+  [rounded]="rounded"
+  [raised]="raised"
+  [outlined]="outlined"
+  [text]="text"
+  [size]="size"
+  [iconPos]="iconPos || 'left'"
+  [class]="buttonClass"
+  (click)="handleClick($event)"
 >
-    @if (!loading) {
-        @if (icon) {
-            <i [class]="icon"></i>
-        }
-        <ng-content></ng-content>
+  @if (!loading) {
+    @if (icon) {
+      <i [class]="icon"></i>
     }
-    @if (badge) {
-        <span [class]="'p-badge ' + (badgeClass || '')" class="ml-2">{{badge}}</span>
-    }
+    <ng-content></ng-content>
+  }
+  @if (badge) {
+    <span [class]="'p-badge ' + (badgeClass || '')" class="ml-2">{{ badge }}</span>
+  }
 </button>

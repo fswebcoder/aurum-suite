@@ -89,3 +89,7 @@ p-datepicker{
         margin-left: 10px;
         font-size: 0.9rem;
     }
+.p-select-option.p-select-option-selected.p-focus {
+    background: var(--p-select-option-selected-focus-background);
+    color: var(--primary-color) !important;
+}

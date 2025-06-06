@@ -1,4 +1,3 @@
-
 export const environment = {
   production: false,
   cookie: {
@@ -8,5 +7,6 @@ export const environment = {
   },
   services: {
     security: 'https://borealis.aurumsuite.com.co:8443/api/'
+    // security: 'http://172.17.18.52:8443/api/'
   }
 };

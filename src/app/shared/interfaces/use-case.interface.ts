@@ -1,8 +1,5 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-export  interface UseCase<O, I = unknown>{
-    execute(params: I): Observable<O>
+export interface UseCase<O, I = unknown> {
+  execute(params: I): Observable<O>;
 }
-
-
-

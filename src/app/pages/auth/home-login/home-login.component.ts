@@ -1,4 +1,4 @@
-import { LoginSmartComponent } from '@/presentation/modules/layout/auth/login-smart/login-smart.component';
+import { LoginSmartComponent } from '@/presentation/modules/auth/login-smart/login-smart.component';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './home-login.component.html',
   styleUrl: './home-login.component.scss'
 })
-export class HomeLoginComponent {
-
-}
+export class HomeLoginComponent {}

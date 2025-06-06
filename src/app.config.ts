@@ -1,4 +1,4 @@
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, InjectionToken, isDevMode } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from '@angular/router';
@@ -14,6 +14,7 @@ import { authProvider } from '@/core/providers/auth/auth.provider';
 import { ALL_REPOSITORIES } from '@/core/providers/repositories.provide';
 import { environment } from './enviromments/environment';
 import { MessageService } from 'primeng/api';
+import { authInterceptor } from '@/core/interceptors/auth.interceptor';
 
 export const ENVIRONMENT = new InjectionToken<Environment>('environment');
 
@@ -48,7 +49,7 @@ export const appConfig: ApplicationConfig = {
       }),
       withEnabledBlockingInitialNavigation()
     ),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     provideAnimationsAsync(),
     ...ALL_REPOSITORIES,
     providePrimeNG({

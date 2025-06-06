@@ -1,0 +1,31 @@
+<!-- Contenedor principal con float label -->
+<p-floatlabel class="w-full" variant="on">
+  <p-select
+    [id]="id"
+    [(ngModel)]="value"
+    [options]="options()"
+    [optionLabel]="optionLabel()"
+    [optionValue]="optionValue() || undefined"
+    [disabled]="disabled"
+    [showClear]="showClear()"
+    [filter]="filter()"
+    [filterBy]="filterBy()"
+    [emptyFilterMessage]="emptyFilterMessage()"
+    [emptyMessage]="emptyMessage()"
+    [class.ng-invalid]="hasErrors()"
+    [class.ng-dirty]="hasErrors()"
+    styleClass="w-full"
+    (onChange)="onChange($event.value)"
+    (onBlur)="onBlur()"
+  />
+  <label [for]="id">{{ label() }}</label>
+</p-floatlabel>
+
+@if (hasErrors()) {
+  <div class="flex validation-error-msg items-center">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <small class="text-danger flex-1">
+      {{ errorMessage() }}
+    </small>
+  </div>
+}
