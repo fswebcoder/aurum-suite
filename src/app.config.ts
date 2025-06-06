@@ -10,6 +10,10 @@ import { provideNgxMask } from 'ngx-mask';
 import { provideTanStackQuery, QueryClient, withDevtools } from '@tanstack/angular-query-experimental';
 import { Environment } from '@/shared/types/environment';
 import { provideCore } from '@/core/providers/store/provide.core';
+import { authProvider } from '@/core/providers/auth/auth.provider';
+import { ALL_REPOSITORIES } from '@/core/providers/repositories.provide';
+import { environment } from './enviromments/environment';
+import { MessageService } from 'primeng/api';
 
 export const ENVIRONMENT = new InjectionToken<Environment>('environment');
 
@@ -33,6 +37,8 @@ const MyPreset = definePreset(Material, {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: ENVIRONMENT, useValue: environment },
+    MessageService,
     provideCore(),
     provideRouter(
       appRoutes,
@@ -44,6 +50,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
+    ...ALL_REPOSITORIES,
     providePrimeNG({
       ripple: true,
       inputStyle: 'filled',

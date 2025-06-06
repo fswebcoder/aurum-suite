@@ -7,6 +7,7 @@ import { LoadingState } from '../interfaces/loading-state.interface';
 })
 export class LoadingService {
     private loadingState = new BehaviorSubject<LoadingState>({});
+    private buttonLoadingState = new BehaviorSubject<Record<string, boolean>>({});
 
     /**
      * Inicia el estado de carga para una sección específica
@@ -50,5 +51,38 @@ export class LoadingService {
      */
     isLoadingSync(section: string): boolean {
         return this.loadingState.value[section] || false;
+    }
+
+    /**
+     * Establece el estado de loading para un botón específico
+     * @param buttonId Identificador único del botón
+     * @param loading Estado de loading
+     */
+    setButtonLoading(buttonId: string, loading: boolean): void {
+        const currentState = this.buttonLoadingState.value;
+        this.buttonLoadingState.next({
+            ...currentState,
+            [buttonId]: loading
+        });
+    }
+
+    /**
+     * Obtiene el estado de loading de un botón específico
+     * @param buttonId Identificador único del botón
+     */
+    isButtonLoading$(buttonId: string): Observable<boolean> {
+        return new Observable<boolean>(observer => {
+            this.buttonLoadingState.subscribe(state => {
+                observer.next(state[buttonId] || false);
+            });
+        });
+    }
+
+    /**
+     * Obtiene el estado actual de loading de un botón
+     * @param buttonId Identificador único del botón
+     */
+    isButtonLoadingSync(buttonId: string): boolean {
+        return this.buttonLoadingState.value[buttonId] || false;
     }
 }

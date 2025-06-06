@@ -74,8 +74,9 @@ import { LoadingOptions } from '../../interfaces/loading-options.interface';
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(255, 255, 255, 0.9);
-                backdrop-filter: blur(4px);
+                background: rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
                 z-index: 1000;
                 min-height: 100%;
             }
@@ -86,8 +87,9 @@ import { LoadingOptions } from '../../interfaces/loading-options.interface';
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(6px);
+                background: rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
                 z-index: 9999;
                 min-height: 100vh;
                 display: flex;
@@ -100,6 +102,13 @@ import { LoadingOptions } from '../../interfaces/loading-options.interface';
                     flex-direction: column;
                     align-items: center;
                     gap: 2rem;
+                    padding: 2rem;
+                    border-radius: 16px;
+                    background: rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
                 }
             }
         }

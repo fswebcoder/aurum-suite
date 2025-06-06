@@ -1,30 +1,33 @@
 import { Action, ActionReducer } from '@ngrx/store';
 import { StoreState } from '../../store.state';
-import { isHydrateSuccess } from '../actions/hydratation.actions';
-import { initialAuthState } from '@/store/models/auth/auth.model';
+import { HYDRATE_SUCCESS } from '../actions/hydratation.actions';
+import { AuthState } from '@/store/models/auth/auth.model';
+
+function isHydrateSuccess(action: Action): action is ReturnType<typeof HYDRATE_SUCCESS> {
+    return action.type === '[Hydratation] Hydrate Success';
+}
 
 export const HYDRATATION_META_REDUCER = (reducer: ActionReducer<StoreState>): ActionReducer<StoreState> => {
-  return (state, action: Action) => {
-    if (isHydrateSuccess(action)) {
-      const { auth } = action.state;
+    return (state, action) => {
+        if (isHydrateSuccess(action) && action.state.auth) {
+            const hydratedAuth: AuthState = {
+                ...action.state.auth,
+                loading: false,
+                isAutenticated: true,
+                error: null
+            };
 
-      if (!auth) {
-        return reducer(state, action);
-      }
-      return {
-        ...state,
-        auth: {
-          ...initialAuthState,
-          ...state?.auth,
-          ...auth
+            return {
+                ...action.state,
+                auth: hydratedAuth,
+                router: state?.router || action.state.router
+            } as StoreState;
         }
-      } as StoreState;
-    }
 
-    return reducer(state, action);
-  };
+        return reducer(state, action);
+    };
 };
 
 export const isAuthenticated = (state: StoreState): boolean => {
-  return state?.auth?.isAutenticated ?? false;
+    return state?.auth?.isAutenticated ?? false;
 };
