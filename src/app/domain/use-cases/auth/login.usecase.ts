@@ -6,7 +6,9 @@ import { inject, Injectable } from '@angular/core';
 import { IGeneralResponse } from 'projects/utilities/src/public-api';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class LoginUseCase implements UseCase<IGeneralResponse<any>, ILoginParamsEntity> {
     private readonly loginRepository = inject(LoginRepository);
 

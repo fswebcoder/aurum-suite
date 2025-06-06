@@ -1,53 +1,52 @@
+<app-loading section="login" [options]="{ fullscreen: true }"></app-loading>
+
 @defer {
-    <div class="login-container">
-        <!-- Video de fondo -->
-        <video class="background-video" autoplay muted loop playsinline>
-          <source src="login-bg.mp4" type="video/mp4" />
-          <source src="login-bg.webm" type="video/webm" />
-          <img src="login-bg.jpg" alt="Login background" class="fallback-image" />
-        </video>
+  <div class="login-container">
+    <!-- Video de fondo -->
+    <video class="background-video" autoplay muted loop playsinline>
+      <source src="login-bg.mp4" type="video/mp4" />
+      <source src="login-bg.webm" type="video/webm" />
+      <!-- <img src="login-bg.jpg" alt="Login background" class="fallback-image" /> -->
+    </video>
 
-        <!-- Overlay opcional para mejorar legibilidad -->
-        <div class="video-overlay"></div>
+    <!-- Overlay opcional para mejorar legibilidad -->
+    <div class="video-overlay"></div>
 
-        <!-- Contenido del formulario -->
-        <div class="form-container">
-          <div class="form-card">
-            <!-- Logo de Aurum -->
-            <div class="mb-8 flex justify-center">
-              <img src="Logo horizontalSV.png" alt="Aurum Logo" width="250px" />
-            </div>
-
-            <form [formGroup]="loginForm" class="flex flex-col gap-4" (ngSubmit)="validateForm()">
-              <div class="w-full flex flex-col gap-4">
-                <svi-float-input type="text" label="Correo electrónico" formControlName="email"></svi-float-input>
-              </div>
-              <div class="w-full flex flex-col gap-4">
-                <svi-float-input
-                  type="password"
-                  label="Contraseña"
-                  formControlName="password"
-                  class="w-full"
-                ></svi-float-input>
-              </div>
-
-              <svi-button
-              type="submit"
-                label="Iniciar sesión"
-                [severity]="'primary'"
-                [styleClass]="'w-full'"
-                [disabled]="loginForm.invalid"
-
-              >
-                <i class="fa-duotone fa-regular fa-right-to-bracket"></i>
-              </svi-button>
-            </form>
-          </div>
+    <!-- Contenido del formulario -->
+    <div class="form-container">
+      <div class="form-card">
+        <!-- Logo de Aurum -->
+        <div class="mb-8 flex justify-center">
+          <img src="Logo horizontalSV.png" alt="Aurum Logo" width="250px" />
         </div>
+
+        <form [formGroup]="loginForm" class="flex flex-col gap-4" (ngSubmit)="validateForm()">
+          <div class="w-full flex flex-col gap-4">
+            <svi-float-input type="text" label="Correo electrónico" formControlName="email"></svi-float-input>
+          </div>
+          <div class="w-full flex flex-col gap-4">
+            <svi-float-input
+              type="password"
+              label="Contraseña"
+              formControlName="password"
+              class="w-full"
+            ></svi-float-input>
+          </div>
+
+          <svi-button
+            type="submit"
+            [loadingId]="'login-button'"
+            label="Iniciar sesión"
+            [severity]="'primary'"
+            [styleClass]="'w-full'"
+            [disabled]="loginForm.invalid && !loginForm.pristine"
+          >
+            <i class="fa-duotone fa-regular fa-right-to-bracket"></i>
+          </svi-button>
+        </form>
       </div>
-
+    </div>
+  </div>
 } @placeholder {
-    <app-loading section="prueba" [options]="{ fullscreen: true }">
-        ></app-loading>
-
+  <app-loading section="login" [options]="{ fullscreen: true }"></app-loading>
 }

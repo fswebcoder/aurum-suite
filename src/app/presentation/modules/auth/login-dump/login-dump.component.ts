@@ -6,9 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FloatInputComponent } from '@/shared/components/form/float-input/float-input.component';
-import { DatePikerComponent } from '@/shared/components/form/date-piker/date-piker.component';
 import { ButtonComponent } from '@/shared/components/form/button/button.component';
-import { LoadingService } from '@/shared/services/loading.service';
 import { LoadingComponent } from '@/shared/components/loading/loading.component';
 import { ILoginParamsEntity } from '@/domain/entities/auth/login-params.entity';
 
@@ -24,7 +22,7 @@ import { ILoginParamsEntity } from '@/domain/entities/auth/login-params.entity';
     RippleModule,
     FloatLabelModule,
     ButtonComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
   templateUrl: './login-dump.component.html',
   styleUrls: ['./login-dump.component.scss']
@@ -32,9 +30,8 @@ import { ILoginParamsEntity } from '@/domain/entities/auth/login-params.entity';
 export class LoginDumpComponent implements OnInit {
     loginForm: FormGroup;
     urlVideo: string = 'SVI-Hero.mp4';
-    private loadingService: LoadingService = inject(LoadingService);
 
-    emitLogin =  output<ILoginParamsEntity>();
+    emitLogin = output<ILoginParamsEntity>();
 
     constructor(private fb: FormBuilder) {
         this.loginForm = this.fb.group({

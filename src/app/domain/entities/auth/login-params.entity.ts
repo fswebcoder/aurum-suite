@@ -1,4 +1,4 @@
 export interface ILoginParamsEntity {
-  email: string
+    email: string
   password: string
 }

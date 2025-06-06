@@ -37,14 +37,6 @@ export abstract class BaseHttpService<T> {
     }
 
     protected handleError(error: HttpErrorResponse): Observable<never> {
-        let errorMessage = 'Ha ocurrido un error en la petición';
-
-        if (error.error instanceof ErrorEvent) {
-            errorMessage = `Error: ${error.error.message}`;
-        } else {
-            errorMessage = `Código de error: ${error.status}, mensaje: ${error.message}`;
-        }
-
-        return throwError(() => new Error(errorMessage));
+        return throwError(() => error);
     }
 }

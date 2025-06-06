@@ -1,11 +1,14 @@
+import { ITokens } from "@/shared/entities/tokens.entity";
+import { ICompany } from "@/shared/entities/company.entity";
 export interface AuthState {
     isAutenticated: boolean;
     loading: boolean;
     error: any;
-    companies: any[];
-    companyId: string | null;
-    token: string | null;
-    user: any | null;
+    companies: ICompany[];
+    userId: string | null;
+    tokens: ITokens;
+    name: string;
+    email: string;
 }
 
 export const initialAuthState: AuthState = {
@@ -13,7 +16,8 @@ export const initialAuthState: AuthState = {
     loading: false,
     error: null,
     companies: [],
-    companyId: null,
-    token: null,
-    user: null
+    userId: null,
+    tokens: {} as ITokens,
+    name: '',
+    email: ''
 };

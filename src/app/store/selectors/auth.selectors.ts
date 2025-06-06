@@ -3,24 +3,24 @@ import { AuthState } from '../models/auth/auth.model';
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
-export const selectIsAuthenticated = createSelector(
-    selectAuthState,
-    (state: AuthState) => state.isAutenticated
-);
-
 export const selectAuthLoading = createSelector(
     selectAuthState,
-    (state: AuthState) => state.loading
+    (state) => state.loading
+);
+
+export const selectIsAuthenticated = createSelector(
+    selectAuthState,
+    (state) => state.isAutenticated
 );
 
 export const selectAuthError = createSelector(
     selectAuthState,
-    (state: AuthState) => state.error
+    (state) => state.error
 );
 
 export const selectAuthUser = createSelector(
     selectAuthState,
-    (state: AuthState) => state.user
+    (state: AuthState) => state.name
 );
 
 export const selectAuthCompanies = createSelector(
@@ -28,7 +28,7 @@ export const selectAuthCompanies = createSelector(
     (state: AuthState) => state.companies
 );
 
-export const selectAuthCompanyId = createSelector(
+export const selectAuthUserId = createSelector(
     selectAuthState,
-    (state: AuthState) => state.companyId
+    (state: AuthState) => state.userId
 );
