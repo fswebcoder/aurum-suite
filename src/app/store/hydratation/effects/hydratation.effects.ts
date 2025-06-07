@@ -6,6 +6,7 @@ import { HYDRATE, HYDRATE_SUCCESS } from '../actions/hydratation.actions';
 import { StoreState } from '../../store.state';
 import { loginAction, loginSuccessAction, setThemeAction } from '@/store/actions/auth/auth.actions';
 import { LoadingService } from '@/shared/services/loading.service';
+import { getPermissionsSuccessAction } from '@/store/actions/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class HydratationEffects {
           auth: {
             ...state.auth,
             loading: false,
-            branding: state.auth.branding
+            branding: state.auth.branding,
+            permissions: state.auth.permissions
           }
         })
       );
@@ -94,6 +96,19 @@ export class HydratationEffects {
             this.loadingService.setButtonLoading('login-button', false);
             this.loadingService.stopLoading('login');
           }, 5000); // Timeout de seguridad
+        })
+      ),
+    { dispatch: false }
+  );
+
+  // Efecto para guardar el estado cuando se obtienen los permisos
+  savePermissionsState$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getPermissionsSuccessAction),
+        withLatestFrom(this.store),
+        tap(([_, state]) => {
+          this.saveStateToLocalStorage(state);
         })
       ),
     { dispatch: false }

@@ -24,7 +24,8 @@ export const authInitialState: AuthState = {
   tokens: {} as ITokens,
   name: '',
   email: '',
-  branding: {} as IBranding
+  branding: {} as IBranding,
+  permissions: null
 };
 
 export const authReducer = createReducer(

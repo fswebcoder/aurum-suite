@@ -14,7 +14,8 @@ export const HYDRATATION_META_REDUCER = (reducer: ActionReducer<StoreState>): Ac
                 ...action.state.auth,
                 loading: false,
                 isAutenticated: true,
-                error: null
+                error: null,
+                permissions: action.state.auth.permissions || null
             };
 
             return {

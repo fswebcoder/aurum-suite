@@ -1,5 +1,6 @@
 import { ILoginParamsEntity } from '@/domain/entities/auth/login-params.entity';
 import { ILoginResponseEntity } from '@/domain/entities/auth/login-response.entity';
+import { IPermissionsResponseEntity } from '@/domain/entities/auth/permissions-response.entity';
 import { ISetCompanyResponseEntity } from '@/domain/entities/auth/set-company-response.entity';
 import { LoginRepository } from '@/domain/repositories/auth/auth.repository';
 import { LoginDatasourceService } from '@/infrastructure/datasources/auth/auth-datasource.service';
@@ -18,7 +19,7 @@ export class LoginRepositoryImpl implements LoginRepository {
     return this.loginDatasource.setCompany(companyId);
   }
 
-  getPermissions(companyId: string): Observable<IGeneralResponse<any>> {
+  getPermissions(companyId: string): Observable<IGeneralResponse<IPermissionsResponseEntity>> {
     return this.loginDatasource.getPermissions(companyId);
   }
 }

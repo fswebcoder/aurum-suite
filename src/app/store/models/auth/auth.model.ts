@@ -11,6 +11,7 @@ export interface AuthState {
   name: string;
   email: string;
   branding: IBranding;
+  permissions: any;
 }
 
 export const initialAuthState: AuthState = {
@@ -22,5 +23,6 @@ export const initialAuthState: AuthState = {
   tokens: {} as ITokens,
   name: '',
   email: '',
-  branding: {} as IBranding
+  branding: {} as IBranding,
+  permissions: null
 };

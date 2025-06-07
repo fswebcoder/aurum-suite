@@ -18,3 +18,8 @@ export const selectAuthUserId = createSelector(selectAuthState, (state: AuthStat
 export const selectAuthBranding = createSelector(selectAuthState, (state: AuthState) => state.branding);
 
 export const slectAuthTokens = createSelector(selectAuthState, (state: AuthState) => state.tokens);
+
+export const selectAuthPermissions = createSelector(
+    selectAuthState,
+    (state: AuthState) => state.permissions
+);
