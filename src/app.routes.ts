@@ -23,9 +23,14 @@ export const appRoutes: Routes = [
         data: { breadcrumb: 'Inicio' },
         loadComponent: () =>
           import('@/shared/components/default-page/default-page.component').then(c => c.DefaultPageComponent)
+      },
+      {
+        path: 'lims',
+        loadChildren: () => import('@lims/lims.routes')
       }
     ]
-  }
+  },
+
   // { path: 'auth', loadChildren: () => import('@/pages/auth/auth.routes') },
   // {
   //     path: 'landing',

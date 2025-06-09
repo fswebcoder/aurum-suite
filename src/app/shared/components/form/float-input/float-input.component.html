@@ -20,14 +20,7 @@
   <label [for]="id">{{ label() }}</label>
 </p-floatlabel>
 
-@if (hasErrors) {
-  <div class="flex validation-error-msg items-center">
-    <i class="fa-solid fa-triangle-exclamation"></i>
-    <small class="text-danger flex-1">
-      {{ errorMessage }}
-    </small>
-  </div>
-}
+<div sviFormError [errorMessage]="errorMessage" [show]="hasErrors"></div>
 
 <ng-template #input>
   <input

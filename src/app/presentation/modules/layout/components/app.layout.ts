@@ -9,8 +9,8 @@ import { AppBreadcrumb } from './app.breadcrumb';
 import { AppSidebar } from './app.sidebar';
 import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { AppRightMenu } from './app.rightmenu';
 import { LayoutService } from '../service/layout.service';
+import { AppRightMenu } from './app.rightmenu';
 
 @Component({
     selector: 'app-layout',
@@ -100,7 +100,7 @@ export class AppLayout implements OnDestroy {
     }
 
     hideMenu() {
-        this.layoutService.layoutState.update((prev) => ({ ...prev, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
+        this.layoutService.layoutState.update((prev:any) => ({ ...prev, overlayMenuActive: false, staticMenuMobileActive: false, menuHoverActive: false }));
         this.layoutService.reset();
         if (this.menuOutsideClickListener) {
             this.menuOutsideClickListener();

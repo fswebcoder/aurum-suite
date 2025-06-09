@@ -79,15 +79,25 @@ p-datepicker{
 }
 
 
+p-select{
+  border-radius: 10px !important;
+}
 
 
 //GENERICS
-.text-danger{
+.validation-error-msg{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
         color: red;
         font-weight: bold;
         margin-left: 10px;
-        font-size: 0.9rem;
+        font-size: 0.996rem;
+        i{
+            margin-right: 5px;
+         color: red;
+        }
     }
 .p-select-option.p-select-option-selected.p-focus {
     background: var(--p-select-option-selected-focus-background);

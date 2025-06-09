@@ -10,7 +10,6 @@ import {DomHandler} from "primeng/dom";
 import { LayoutService } from '../service/layout.service';
 
 @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[app-menuitem]',
     imports: [CommonModule, RouterModule, RippleModule, TooltipModule],
     template: `
@@ -31,7 +30,7 @@ import { LayoutService } from '../service/layout.service';
                 [pTooltip]="item.label"
                 [tooltipDisabled]="!(isSlim() && root && !active)"
             >
-                <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+                <i class="fa-duotone fa-regular {{item.icon}} layout-menuitem-icon"></i>
                 <span class="layout-menuitem-text">{{ item.label }}</span>
                 <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
             </a>
@@ -63,8 +62,8 @@ import { LayoutService } from '../service/layout.service';
                 [pTooltip]="item.label"
                 [tooltipDisabled]="!(isSlim() && root)"
             >
-                <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-                <span class="layout-menuitem-text">{{ item.label }}</span>
+            <i class="fa-duotone fa-regular {{item.icon}} layout-menuitem-icon"></i>
+            <span class="layout-menuitem-text">{{ item.label }}</span>
                 <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
             </a>
 

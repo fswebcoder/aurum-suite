@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, forwardRef, input } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, input, inject } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NgControl, FormControl, Validators } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { SelectModule } from 'primeng/select';
+import { FormErrorDirective } from '../../../directives/form-error.directive';
 
 @Component({
   selector: 'svi-float-select',
   standalone: true,
-  imports: [CommonModule, FloatLabelModule, SelectModule, FormsModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FloatSelectComponent),
-      multi: true
-    }
+  imports: [
+    CommonModule,
+    FloatLabelModule,
+    SelectModule,
+    FormsModule,
+    FormErrorDirective
   ],
   templateUrl: './float-select.component.html',
   styleUrl: './float-select.component.scss',
@@ -24,9 +24,18 @@ import { SelectModule } from 'primeng/select';
 export class FloatSelectComponent implements ControlValueAccessor {
   readonly id = `float-select-${crypto.randomUUID()}`;
 
+  // Control interno para el valor seleccionado
   value: any = null;
   disabled = false;
-  touched = false;
+
+  // Inyección del control del formulario
+  private controlDir = inject(NgControl, { optional: true, self: true });
+
+  constructor() {
+    if (this.controlDir != null) {
+      this.controlDir.valueAccessor = this;
+    }
+  }
 
   // Inputs como signals
   label = input<string>('');
@@ -40,11 +49,12 @@ export class FloatSelectComponent implements ControlValueAccessor {
   emptyMessage = input<string>('No hay opciones disponibles');
   errorMessages = input<Record<string, string>>({});
 
-  onChange = (value: any) => {};
-  onTouched = () => {};
+  // Funciones para ControlValueAccessor
+  private onChange = (value: any) => {};
+  private onTouched = () => {};
 
   writeValue(value: any): void {
-    this.value = value;
+    this.value = value === '' ? null : value;
   }
 
   registerOnChange(fn: any): void {
@@ -60,23 +70,42 @@ export class FloatSelectComponent implements ControlValueAccessor {
   }
 
   onBlur() {
-    this.touched = true;
     this.onTouched();
   }
 
-  // Computed properties para manejo de errores
-  hasErrors = computed(() => {
-    return this.touched && !this.value;
-  });
+  handleChange(event: any): void {
+    this.value = event.value;
 
-  errorMessage = computed(() => {
-    const errorMessages = this.errorMessages();
-    if (this.hasErrors()) {
-      if (errorMessages['required']) {
-        return errorMessages['required'];
+    if (this.value === '' || this.value === undefined) {
+      this.onChange(null);
+    } else {
+      this.onChange(this.value);
+    }
+  }
+
+  // Getters para acceder al control del formulario y sus estados
+  get control(): FormControl<any> | null {
+    return this.controlDir?.control as FormControl<any> | null;
+  }
+
+  get hasErrors(): boolean {
+    return !!this.control && this.control.touched && this.control.invalid;
+  }
+
+  get required(): boolean {
+    return !!this.control && this.control.hasValidator(Validators.required);
+  }
+
+  get errorMessage(): string {
+    const errors = this.control?.errors;
+    if (errors) {
+      for (const type in errors) {
+        if (this.errorMessages()[type]) {
+          return this.errorMessages()[type];
+        }
       }
       return `El campo ${this.label()?.toLowerCase()} es requerido`;
     }
     return '';
-  });
+  }
 }

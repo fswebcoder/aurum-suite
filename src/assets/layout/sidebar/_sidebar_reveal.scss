@@ -9,6 +9,12 @@
             transform: translateX(-12.75rem);
             z-index: 999;
 
+            .layout-menuitem-text,
+            .layout-menuitem-root-text > span {
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+
             .layout-sidebar-top {
                 display: flex;
                 align-items: center;
@@ -45,6 +51,7 @@
                     .layout-root-menuitem {
                         > .layout-menuitem-root-text {
                             > span {
+
                                 margin-right: auto;
                             }
 
@@ -120,6 +127,11 @@
             .layout-sidebar {
                 transform: translateX(0);
 
+                .layout-menuitem-text,
+                .layout-menuitem-root-text > span {
+                    opacity: 1;
+                }
+
                 .layout-sidebar-top {
                     padding: 0 1.5rem;
                     justify-content: space-between;
@@ -138,7 +150,6 @@
 
                 .layout-menu-container {
                     overflow: auto;
-
                     .layout-menu {
                         .layout-root-menuitem {
                             > .layout-menuitem-root-text {

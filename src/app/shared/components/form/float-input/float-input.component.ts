@@ -15,6 +15,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { FormErrorDirective } from '../../../directives/form-error.directive';
 
 @Component({
   selector: 'svi-float-input',
@@ -27,7 +28,8 @@ import { PasswordModule } from 'primeng/password';
     InputIconModule,
     NgxMaskDirective,
     ReactiveFormsModule,
-    PasswordModule
+    PasswordModule,
+    FormErrorDirective
   ],
   providers: [
     {

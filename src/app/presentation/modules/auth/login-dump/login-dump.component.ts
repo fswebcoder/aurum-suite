@@ -70,7 +70,7 @@ export class LoginDumpComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['inputCompanies']) {
       this.setBranding();
-      this.ouputSetCompany.emit(this.inputCompanies()![0].id.toString());
+    //   this.ouputSetCompany.emit(this.inputCompanies()![0].id.toString());
     }
   }
 

@@ -24,8 +24,9 @@
 
     //select
     --p-select-option-selected-background: color-mix(in srgb, var(--primary-color) 20%, white 8%) !important;
-    
+
     --p-select-option-selected-focus-background: color-mix(in srgb, var(--primary-color) 20%, white 8%) !important;
     --p-select-option-selected-focus-color: var(--primary-color) !important;
-    
+    --p-form-field-padding-x: 0.70rem !important;
+    --p-form-field-padding-y: 0.70rem !important;
 }

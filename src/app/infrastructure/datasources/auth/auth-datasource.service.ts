@@ -18,14 +18,14 @@ export class LoginDatasourceService extends BaseHttpService<ILoginResponseEntity
 
 
   login(credentials: ILoginParamsEntity): Observable<IGeneralResponse<ILoginResponseEntity>> {
-    return this.post<IGeneralResponse<ILoginResponseEntity>>(credentials, '/auth/login');
+    return this.post<IGeneralResponse<ILoginResponseEntity>>(credentials, 'auth/login');
   }
 
   setCompany(companyId: string): Observable<IGeneralResponse<ISetCompanyResponseEntity>> {
-    return this.post<IGeneralResponse<ISetCompanyResponseEntity>>({ companyId }, '/auth/set-company');
+    return this.post<IGeneralResponse<ISetCompanyResponseEntity>>({ companyId }, 'auth/set-company');
   }
 
   getPermissions(companyId: string): Observable<IGeneralResponse<IPermissionsResponseEntity>> {
-    return this.get<IGeneralResponse<IPermissionsResponseEntity>>(`/user/permissions/${companyId}`);
+    return this.get<IGeneralResponse<IPermissionsResponseEntity>>(`user/permissions/${companyId}`);
   }
 }

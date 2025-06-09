@@ -92,6 +92,8 @@ export class LayoutService {
 
     isDarkTheme: Signal<boolean> = computed(() => this.layoutConfig().darkTheme);
 
+    isStatic: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'static');
+
     isOverlay: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'overlay');
 
     isSlim: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'slim');
@@ -99,6 +101,8 @@ export class LayoutService {
     isSlimPlus: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'slim-plus');
 
     isHorizontal: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'horizontal');
+
+    isReveal: Signal<boolean> = computed(() => this.layoutConfig().menuMode === 'reveal');
 
     transitionComplete: WritableSignal<boolean> = signal<boolean>(false);
 
@@ -177,15 +181,15 @@ export class LayoutService {
             if (this.layoutState().overlayMenuActive) {
                 this.overlayOpen.next(null);
             }
-        }
-
-        if (this.isDesktop()) {
-            this.layoutState.update((prev) => ({ ...prev, staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive }));
         } else {
-            this.layoutState.update((prev) => ({ ...prev, staticMenuMobileActive: !this.layoutState().staticMenuMobileActive }));
+            if (this.isDesktop()) {
+                this.layoutState.update((prev) => ({ ...prev, staticMenuDesktopInactive: !this.layoutState().staticMenuDesktopInactive }));
+            } else {
+                this.layoutState.update((prev) => ({ ...prev, staticMenuMobileActive: !this.layoutState().staticMenuMobileActive }));
 
-            if (this.layoutState().staticMenuMobileActive) {
-                this.overlayOpen.next(null);
+                if (this.layoutState().staticMenuMobileActive) {
+                    this.overlayOpen.next(null);
+                }
             }
         }
     }

@@ -90,6 +90,6 @@ export class AppRightMenu {
     }
 
     set rightMenuActive(_val: boolean) {
-        this.layoutService.layoutState.update((prev) => ({ ...prev, rightMenuActive: _val }));
+        this.layoutService.layoutState.update((prev:any) => ({ ...prev, rightMenuActive: _val }));
     }
 }

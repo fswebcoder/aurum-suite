@@ -1,13 +1,10 @@
-import { LoadingComponent } from '@/shared/components/loading/loading.component';
+import { Routes } from '@angular/router';
 
-export default [
-  {
-    path: 'recepcion-dore',
-    data: { breadcrumb: 'Recepcion muestras' },
-
-    component: () =>
-      import('@lims/modules/receptions/samples/reception-sample-smart/reception-sample-smart.component').then(
-        c => c.ReceptionSampleSmartComponent
-      )
-  }
-];
+export default [{
+  path: 'recepcion-muestras',
+  data: { breadcrumb: 'Recepcion muestras' },
+  loadComponent: () =>
+    import('@lims/modules/receptions/samples/reception-sample-smart/reception-sample-smart.component').then(
+      c => c.ReceptionSampleSmartComponent
+    )
+}] as Routes

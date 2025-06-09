@@ -5,6 +5,7 @@ import { ofType } from "@ngrx/effects";
 import { Actions } from "@ngrx/effects";
 import { catchError, map, of, switchMap } from "rxjs";
 import { getPermissionsAction, getPermissionsSuccessAction, getPermissionsFailureAction } from "../actions/auth/auth.actions";
+import { Router } from "@angular/router";
 @Injectable({
     providedIn: 'root',
     deps: [Actions, AuthUseCase]
@@ -12,13 +13,14 @@ import { getPermissionsAction, getPermissionsSuccessAction, getPermissionsFailur
 export class PermissionEffects{
     private actions$ = inject(Actions);
     private authUseCase = inject(AuthUseCase);
-
+    private router = inject(Router);
     getPermissionsEffect$ = createEffect(() =>
         this.actions$.pipe(
             ofType(getPermissionsAction),
             switchMap(({ payload }) => this.authUseCase.getPermissions(payload).pipe(
                 map(response => {
-                    console.log({response});
+                    console.log(" lo que me devuelve el backend --->",response);
+                    this.router.navigate(['/home']);
                     return getPermissionsSuccessAction({ payload: response.data });
                 }),
                 catchError(error => of(getPermissionsFailureAction({ error })))

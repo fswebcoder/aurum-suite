@@ -394,7 +394,7 @@ export class AppConfigurator {
     }
 
     set menuMode(val: MenuMode) {
-        this.layoutService.layoutConfig.update((config) => ({
+        this.layoutService.layoutConfig.update((config: any) => ({
             ...config,
             menuMode: val
         }));
@@ -405,7 +405,7 @@ export class AppConfigurator {
     }
 
     set menuTheme(val: string) {
-        this.layoutService.layoutConfig.update((config) => ({
+        this.layoutService.layoutConfig.update((config: any) => ({
             ...config,
             menuTheme: val
         }));
@@ -416,7 +416,7 @@ export class AppConfigurator {
     }
 
     set topbarTheme(val: string) {
-        this.layoutService.layoutConfig.update((config) => ({
+        this.layoutService.layoutConfig.update((config: any) => ({
             ...config,
             topbarTheme: val
         }));
@@ -427,7 +427,7 @@ export class AppConfigurator {
     }
 
     set menuProfilePosition(val: string) {
-        this.layoutService.layoutConfig.update((config) => ({
+        this.layoutService.layoutConfig.update((config: any) => ({
             ...config,
             menuProfilePosition: val
         }));
@@ -438,7 +438,7 @@ export class AppConfigurator {
     }
 
     set darkTheme(_val: boolean) {
-        this.layoutService.layoutConfig.update((config) => ({
+        this.layoutService.layoutConfig.update((config: any) => ({
             ...config,
             menuTheme: _val ? 'dark' : 'light',
             darkTheme: _val
@@ -450,7 +450,7 @@ export class AppConfigurator {
     }
 
     set visible(val: boolean) {
-        this.layoutService.layoutState.update((state) => ({
+        this.layoutService.layoutState.update((state: any) => ({
             ...state,
             configSidebarVisible: val
         }));
@@ -476,7 +476,7 @@ export class AppConfigurator {
     });
 
     onLayoutThemeChange(theme: string) {
-        this.layoutService.layoutConfig.update((state) => ({
+        this.layoutService.layoutConfig.update((state: any) => ({
             ...state,
             layoutTheme: theme
         }));
@@ -574,12 +574,12 @@ export class AppConfigurator {
 
     updateColors(event: any, type: string, color: any) {
         if (type === 'primary') {
-            this.layoutService.layoutConfig.update((state) => ({
+            this.layoutService.layoutConfig.update((state:any) => ({
                 ...state,
                 primary: color.name
             }));
         } else if (type === 'surface') {
-            this.layoutService.layoutConfig.update((state) => ({
+            this.layoutService.layoutConfig.update((state:any) => ({
                 ...state,
                 surface: color.name
             }));
@@ -606,6 +606,6 @@ export class AppConfigurator {
     }
 
     toggleConfigSidebar() {
-        this.layoutService.layoutState.update((val) => ({ ...val, configSidebarVisible: !val.configSidebarVisible }));
+        this.layoutService.layoutState.update((val:any) => ({ ...val, configSidebarVisible: !val.configSidebarVisible }));
     }
 }

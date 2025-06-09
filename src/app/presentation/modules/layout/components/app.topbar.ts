@@ -331,6 +331,6 @@ export class AppTopbar {
     }
 
     onTopbarMenuToggle() {
-        this.layoutService.layoutState.update((val) => ({ ...val, topbarMenuActive: !val.topbarMenuActive }));
+        this.layoutService.layoutState.update((val:any) => ({ ...val, topbarMenuActive: !val.topbarMenuActive }));
     }
 }

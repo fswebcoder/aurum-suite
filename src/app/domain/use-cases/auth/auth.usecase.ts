@@ -21,29 +21,23 @@ export class AuthUseCase implements LoginRepository {
   setCompany(companyId: string): Observable<IGeneralResponse<ISetCompanyResponseEntity>> {
     return this.loginRepository.setCompany(companyId);
   }
-  getPermissions(companyId: string): Observable<IGeneralResponse<IPermissionsResponseEntity>> {
+  getPermissions(companyId: string): Observable<IGeneralResponse<any>> {
     return this.loginRepository.getPermissions(companyId).pipe(
-      map(response => ({
-        ...response,
-        data: {
-          company: this.transFormMenuItem(response.data.company, response.data.applications)[0],
-          roles: response.data.roles,
-          applications: []
+      map(res => {
+        const menuItems = this.transFormMenuItem(res.data.applications);
+
+        return {
+          ...res,
+          data: {
+            menuItems
+          }
         }
-      }))
+      })
     );
   }
 
-  transFormMenuItem(menuItem: any, applications: any[]): any[] {
-    return [
-      {
-        label: menuItem.name,
-        items: this.mapApplications(applications)
-      }
-    ];
-  }
-
-  private mapApplications(applications: any[]): MenuItem[] {
+  transFormMenuItem(applications: any[]): any[] {
+    console.log({applications});
     return applications.map((application: any) => ({
       label: application.name,
       items: this.mapResources(application.resources)
