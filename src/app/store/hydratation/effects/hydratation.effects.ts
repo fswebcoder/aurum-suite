@@ -1,12 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { EMPTY, map, mergeMap, tap, withLatestFrom } from 'rxjs';
+import { EMPTY, mergeMap, tap, withLatestFrom } from 'rxjs';
 import { HYDRATE, HYDRATE_SUCCESS } from '../actions/hydratation.actions';
 import { StoreState } from '../../store.state';
 import { loginAction, loginSuccessAction, setThemeAction } from '@/store/actions/auth/auth.actions';
 import { LoadingService } from '@/shared/services/loading.service';
 import { getPermissionsSuccessAction } from '@/store/actions/auth/auth.actions';
+import { departmentsListSuccessAction } from '@/store/actions/common/common.action';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +17,26 @@ export class HydratationEffects {
   private store = inject(Store<StoreState>);
   private loadingService = inject(LoadingService);
 
-  // Función privada para guardar el estado en localStorage
   private saveStateToLocalStorage(state: StoreState) {
-    if (state.auth) {
-      localStorage.setItem(
-        'app-state',
-        JSON.stringify({
-          auth: {
-            ...state.auth,
-            loading: false,
-            branding: state.auth.branding,
-            permissions: state.auth.permissions
-          }
-        })
-      );
+    const stateToSave = {
+      auth: state.auth ? {
+        ...state.auth,
+        loading: false,
+        branding: state.auth.branding,
+        permissions: state.auth.permissions
+      } : null,
+      common: state.common ? {
+        ...state.common,
+        loading: false,
+        departments: state.common.departments
+      } : null
+    };
+
+    if (stateToSave.auth || stateToSave.common) {
+      localStorage.setItem('app-state', JSON.stringify(stateToSave));
     }
   }
 
-  // Efecto para guardar el estado cuando cambia la autenticación
   saveState$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -48,7 +51,6 @@ export class HydratationEffects {
     { dispatch: false }
   );
 
-  // Efecto para guardar el estado cuando cambia el tema
   saveThemeState$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -61,7 +63,18 @@ export class HydratationEffects {
     { dispatch: false }
   );
 
-  // Efecto para hidratar el estado al iniciar
+  saveDepartmentsState$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(departmentsListSuccessAction),
+        withLatestFrom(this.store),
+        tap(([_, state]) => {
+          this.saveStateToLocalStorage(state);
+        })
+      ),
+    { dispatch: false }
+  );
+
   hydrate$ = createEffect(() =>
     this.actions$.pipe(
       ofType(HYDRATE),
@@ -70,9 +83,16 @@ export class HydratationEffects {
         if (storageValue) {
           try {
             const state = JSON.parse(storageValue);
-            if (state.auth) {
-              state.auth.loading = false;
-              state.auth.branding = state.auth.branding || {};
+            if (state.auth || state.common) {
+              if (state.auth) {
+                state.auth.loading = false;
+                state.auth.branding = state.auth.branding || {};
+              }
+              if (state.common) {
+                state.common.loading = false;
+                state.common.departments = state.common.departments || [];
+                state.common.cities = state.common.cities || [];
+              }
               this.loadingService.setButtonLoading('login-button', false);
               this.loadingService.stopLoading('login');
               return [HYDRATE_SUCCESS({ state })];
@@ -86,7 +106,6 @@ export class HydratationEffects {
     )
   );
 
-  // Efecto para asegurar que el botón se desbloquee en caso de error
   resetLoading$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -101,7 +120,6 @@ export class HydratationEffects {
     { dispatch: false }
   );
 
-  // Efecto para guardar el estado cuando se obtienen los permisos
   savePermissionsState$ = createEffect(
     () =>
       this.actions$.pipe(

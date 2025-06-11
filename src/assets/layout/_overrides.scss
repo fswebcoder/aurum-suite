@@ -103,3 +103,7 @@ p-select{
     background: var(--p-select-option-selected-focus-background);
     color: var(--primary-color) !important;
 }
+
+textarea{
+    border-radius: 10px !important;
+}

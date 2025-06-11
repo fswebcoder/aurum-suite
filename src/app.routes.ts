@@ -26,6 +26,8 @@ export const appRoutes: Routes = [
       },
       {
         path: 'lims',
+        data: { breadcrumb: 'Lims' },
+
         loadChildren: () => import('@lims/lims.routes')
       }
     ]

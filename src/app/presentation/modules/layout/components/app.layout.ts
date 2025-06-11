@@ -1,4 +1,4 @@
-import { Component, computed, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
@@ -11,12 +11,17 @@ import { Toast } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { LayoutService } from '../service/layout.service';
 import { AppRightMenu } from './app.rightmenu';
+import { LoadingComponent } from '@/shared/components/loading/loading.component';
+import { getCitiesAction, getDepartmentsAction } from '@/store/actions/common/common.action';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter, AppConfigurator, AppBreadcrumb, AppRightMenu, Toast],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter, AppConfigurator, AppBreadcrumb, AppRightMenu, Toast, LoadingComponent],
     template: `
+    <app-loading section="general" [options]="{ fullscreen: true }"></app-loading>
+
         <div class="layout-container" [ngClass]="containerClass()">
             <div app-topbar></div>
             <div app-right-menu></div>
@@ -34,7 +39,8 @@ import { AppRightMenu } from './app.rightmenu';
     `,
     providers: [MessageService]
 })
-export class AppLayout implements OnDestroy {
+export class AppLayout implements OnDestroy, OnInit {
+    private store = inject(Store);
     overlayMenuOpenSubscription: Subscription;
 
     menuOutsideClickListener: any;
@@ -82,6 +88,15 @@ export class AppLayout implements OnDestroy {
             this.hideMenu();
         });
     }
+
+    ngOnInit(): void {
+        this.getCommon();
+    }
+
+    getCommon() {
+        this.store.dispatch(getDepartmentsAction());
+        this.store.dispatch(getCitiesAction());
+      }
 
     blockBodyScroll(): void {
         if (document.body.classList) {

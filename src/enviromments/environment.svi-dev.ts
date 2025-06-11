@@ -6,7 +6,7 @@ export const environment = {
     expires: 30
   },
   services: {
-    // security: 'https://borealis.aurumsuite.com.co:8443/api/'
-    security: 'http://localhost:8443/api/'
+    security: 'https://borealis.aurumsuite.com.co:8443/api/'
+    // security: 'http://localhost:8443/api/'
   }
 };

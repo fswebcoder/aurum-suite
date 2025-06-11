@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, OnChanges, OnInit, output, SimpleChanges } from '@angular/core';
+import { Component, computed,input, OnChanges, OnInit, output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +11,6 @@ import { LoadingComponent } from '@/shared/components/loading/loading.component'
 import { ILoginParamsEntity } from '@/domain/entities/auth/login-params.entity';
 import { ICompany } from '@/shared/entities/company.entity';
 import { FloatSelectComponent } from '@/shared/components/form/float-select/float-select.component';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { IBranding } from '@/shared/entities/branding.entity';
 
 @Component({
@@ -70,7 +69,9 @@ export class LoginDumpComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['inputCompanies']) {
       this.setBranding();
-    //   this.ouputSetCompany.emit(this.inputCompanies()![0].id.toString());
+      if (this.inputCompanies() && this.inputCompanies()!.length === 1) {
+        this.ouputSetCompany.emit(this.inputCompanies()![0].id.toString());
+      }
     }
   }
 

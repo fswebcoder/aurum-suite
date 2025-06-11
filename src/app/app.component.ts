@@ -4,9 +4,10 @@ import { ToastModule } from 'primeng/toast';
 import { Store } from '@ngrx/store';
 import { HYDRATE } from './store/hydratation/actions/hydratation.actions';
 import { StoreState } from './store/store.state';
-import { ICompany } from './shared/entities/company.entity';
-import { selectAuthBranding, selectAuthCompanies } from './store/selectors/auth.selectors';
+import { selectAuthBranding } from './store/selectors/auth.selectors';
 import { IBranding } from './shared/entities/branding.entity';
+import { getDepartmentsAction } from './store/actions/common/common.action';
+import { GlobalListsService } from './shared/services/global-lists.service';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +20,19 @@ import { IBranding } from './shared/entities/branding.entity';
     /><router-outlet></router-outlet>`
 })
 export class AppComponent implements OnInit {
-  constructor(private store: Store<StoreState>) {}
+  constructor(
+    private store: Store<StoreState>,
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(HYDRATE());
     this.getBranding();
-  }
+}
+
+
 
   getBranding() {
     this.store.select(selectAuthBranding).subscribe(branding => {
-      console.log('branding', branding);
       this.setThemeColor(branding);
     });
   }
@@ -39,3 +43,4 @@ export class AppComponent implements OnInit {
     root.style.setProperty(`--secundaryColor`, company!.secondaryColor || '#6F3C0D');
   }
 }
+

@@ -58,9 +58,17 @@ export const appConfig: ApplicationConfig = {
       theme: { preset: MyPreset, options: { darkModeSelector: '.app-dark' } }
     }),
     provideTanStackQuery(
-      new QueryClient(),
-      withDevtools(() => ({ loadDevtools: 'auto' }))
-    ),
+        new QueryClient({
+          defaultOptions: {
+            queries: {
+              staleTime: 5 * 60 * 1000, // 5 minutos
+              gcTime: 5 * 60 * 1000, // 5 minutos
+              retry: 0,
+              refetchOnWindowFocus: false
+            }
+          }
+        })
+      ),
     provideNgxMask()
   ]
 };

@@ -1,0 +1,23 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="header"
+  [modal]="modal"
+  [style]="{width: width}"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="closable"
+  [closeOnEscape]="closeOnEscape"
+  [dismissableMask]="dismissableMask"
+  [position]="position"
+  (onHide)="hideDialog()">
+
+  <!-- Contenido del diálogo -->
+  <div class="mt-2">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+  <!-- Footer personalizado -->
+  <ng-template pTemplate="footer">
+    <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+  </ng-template>
+
+</p-dialog>

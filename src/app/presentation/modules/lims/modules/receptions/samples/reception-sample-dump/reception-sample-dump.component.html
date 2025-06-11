@@ -1,19 +1,90 @@
-    <div class="card">
-        <h3 class="card-title mb-4">Recepcion muestras de mineral</h3>
-        <div class="card-body">
-            <form [formGroup]="form">
-                <div class="grid">
-                    <div class="col-12 md:col-4">
-                        <svi-date-piker label="Fecha de recepcion" formControlName="receptionDate" ></svi-date-piker>
-                    </div>
-                    <div class="col-12 md:col-4">
-                        <svi-float-input label="Numero de entrega" formControlName="deliveryNumber" ></svi-float-input>
-                    </div>
-                    <div class="col-12 md:col-4">
-                        <svi-float-select label="Proveedor" formControlName="supplier" [options]="mockSuppliers" ></svi-float-select>
-                    </div>
-                </div>
-            </form>
+<div class="card">
+  <h3 class="card-title mb-4">Recepcion muestras de mineral</h3>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <svi-date-piker label="Fecha de recepcion" formControlName="receptionDate"></svi-date-piker>
         </div>
-    </div>
+        <div class="col-12 md:col-4">
+          <svi-float-input label="Numero de entrega" formControlName="deliveryNumber"></svi-float-input>
+        </div>
+        <div class="col-12 md:col-4">
+          <svi-float-select label="Proveedor" formControlName="supplier" [options]="inputSuppliersList()" optionLabel="name" optionValue="id" [loading]="loadingSupplier()"></svi-float-select>
+        </div>
 
+        <div class="col-12 md:col-4">
+          <svi-float-select
+            label="Departamento"
+            formControlName="department"
+            optionLabel="name"
+            optionValue="id"
+            [options]="departments()"
+          ></svi-float-select>
+        </div>
+        <div class="col-12 md:col-4">
+          <svi-float-select
+            label="Municipio"
+            formControlName="municipality"
+            [options]="mockSuppliers"
+          ></svi-float-select>
+        </div>
+        <div class="col-12 md:col-4">
+          <svi-text-area
+            label="Observacion"
+            formControlName="observation"
+            [maxLength]="100"
+            [showCharCount]="true"
+          ></svi-text-area>
+        </div>
+      </div>
+
+      <div class="flex justify-content-end gap-2">
+        <svi-button severity="secondary" type="button" label="Cancelar">
+          <i class="fa-duotone fa-regular fa-ban"></i>
+        </svi-button>
+        <svi-button severity="primary" type="submit" label="Guardar" [disabled]="form.invalid">
+          <i class="fa-duotone fa-regular fa-floppy-disk-circle-arrow-right"></i>
+        </svi-button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="card">
+  <div class="flex justify-content-between">
+    <h3 class="card-title mb-4">Muestras</h3>
+    <svi-button severity="primary" type="submit" label="Agregar muestra" (click)="visible.set(true)">
+      <i class="fa-duotone fa-regular fa-plus"></i>
+    </svi-button>
+  </div>
+  <div class="card-body">
+    <svi-table [columns]="columns" [data]="data" [actions]="actions"></svi-table>
+  </div>
+</div>
+<svi-dialog
+  [visible]="visible()"
+  [header]="'Agregar muestras'"
+  [width]="'50vw'"
+  [position]="'top'"
+  [modal]="true"
+  [closable]="true"
+  [closeOnEscape]="true"
+  [dismissableMask]="true"
+  (onHide)="onHideDialog()"
+  [contentTemplate]="contentTpl"
+  [footerTemplate]="footerTpl"
+>
+</svi-dialog>
+
+<ng-template #contentTpl>
+  <svi-add-samples [resetForm]="resetForm()"></svi-add-samples>
+</ng-template>
+
+<ng-template #footerTpl>
+  <svi-button severity="secondary" type="button" label="Cancelar" (click)="onHideDialog()">
+    <i class="fa-duotone fa-regular fa-ban"></i>
+  </svi-button>
+  <svi-button severity="primary" type="submit" label="Añadir" [disabled]="form.invalid">
+    <i class="fa-duotone fa-regular fa-floppy-disk-circle-arrow-right"></i>
+  </svi-button>
+</ng-template>

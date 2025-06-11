@@ -67,6 +67,7 @@ export class FloatInputComponent implements ControlValueAccessor, Validator {
 
   customOutputTransformFn = input<OutputTransformFn>((val: any) => val, { alias: 'outputTransformFn' });
   inputTransformFn = input<InputTransformFn>((val: any) => val);
+  textRight = input<boolean>(false) ;
 
   errorMessages = input<Record<string, string>>({});
 

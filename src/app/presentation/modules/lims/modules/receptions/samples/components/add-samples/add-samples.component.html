@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <svi-float-input
+        label="Número de muestra"
+        formControlName="sampleNumber">
+      </svi-float-input>
+    </div>
+    <div class="col-12 md:col-4">
+      <svi-float-select
+        label="Tipo de muestra"
+        formControlName="sampleType"
+        [options]="[
+          { label: 'Tipo 1', value: 'TIPO_1' },
+          { label: 'Tipo 2', value: 'TIPO_2' },
+          { label: 'Tipo 3', value: 'TIPO_3' }
+        ]">
+      </svi-float-select>
+    </div>
+    <div class="col-12 md:col-4">
+      <svi-float-input
+        label="Peso de la muestra"
+        formControlName="sampleWeight"
+        sviNumberFormat
+        [textRight]="true"
+        >
+      </svi-float-input>
+    </div>
+  </div>
+</form>

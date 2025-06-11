@@ -48,6 +48,7 @@ export class FloatSelectComponent implements ControlValueAccessor {
   emptyFilterMessage = input<string>('No se encontraron resultados');
   emptyMessage = input<string>('No hay opciones disponibles');
   errorMessages = input<Record<string, string>>({});
+  loading = input<boolean>(false);
 
   // Funciones para ControlValueAccessor
   private onChange = (value: any) => {};

@@ -21,7 +21,7 @@ export class LoginSmartComponent implements OnInit {
 
   onLogin($event: ILoginParamsEntity) {
     this.loadingService.setButtonLoading('login-button', true);
-    this.loadingService.startLoading('login');
+    this.loadingService.startLoading('general');
     this.store.dispatch(loginAction({ payload: $event }));
   }
 

@@ -62,7 +62,11 @@ export const authReducer = createReducer(
   })),
   on(setCompanySuccessAction, (state, { payload }) => ({
     ...state,
-    companyId: payload
+    companyId: payload,
+    tokens: {
+      access_token: payload.access_token,
+      refresh_token: payload.refresh_token
+    }
   })),
   on(setCompanyFailureAction, (state, { error }) => ({
     ...state,
